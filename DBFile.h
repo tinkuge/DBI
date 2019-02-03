@@ -10,20 +10,19 @@
 
 typedef enum {heap, sorted, tree} fType;
 
-// stub DBFile header..replace it with your own DBFile.h 
+// stub DBFile header..replace it with your own DBFile.h
 
 class DBFile {
 	private:
-	File f;
-	Page p;
+	File* file;
+	Page* p;
 	FILE *fload;
 	int pnum;	//page number
 	Record r;
 	bool pdirty;
-	ComparisonEngine ce;
 
 public:
-	DBFile (); 
+	DBFile ();
 
 	int Create (const char *fpath, fType file_type, void *startup);
 	int Open (const char *fpath);
