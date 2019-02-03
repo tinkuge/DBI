@@ -96,11 +96,11 @@ void DBFile::Add (Record &rec) {
 }
 
 int DBFile::GetNext (Record &fetchme) {
-    cout << "11" << endl;
+  //  cout << "11" << endl;
     int ret = p->GetFirst(&fetchme);
-    cout << "322" << endl;
-    cout << file->GetLength() << endl;
-    cout << ret << endl;
+    // cout << "322" << endl;
+    // cout << file->GetLength() << endl;
+    // cout << ret << endl;
 
     if(ret != 0){
         return ret;
@@ -129,20 +129,11 @@ int DBFile::GetNext (Record &fetchme) {
 }
 
 int DBFile::GetNext (Record &fetchme, CNF &cnf, Record &literal) {
-    while(true){
-        int retv = GetNext(fetchme);
-        if(retv == 1){
-            int r = ce.Compare(&fetchme,&literal,&cnf);
-            if(r!=0){
-                return 1;
-            }
-            else{
-                return 0;
-            }
-        }
-
-        else{
-            return 0;
-        }
+  ComparisonEngine ce;
+    while(GetNext(fetchme)){
+        if(ce.Compare(&fetchme,&literal,&cnf)){
+            return 1;
     }
+}
+return 0;
 }

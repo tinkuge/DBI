@@ -20,7 +20,6 @@ class DBFile {
 	int pnum;	//page number
 	Record r;
 	bool pdirty;
-	ComparisonEngine ce;
 
 public:
 	DBFile ();
