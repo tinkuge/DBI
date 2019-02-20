@@ -124,7 +124,7 @@ int DBFile::GetNext (Record &fetchme) {
         return ret;
     }
     else{
-        pnum = pnum + 1;
+        
         //empty the page (kinda redundant)
         p->EmptyItOut();
         
@@ -132,7 +132,7 @@ int DBFile::GetNext (Record &fetchme) {
         if(pnum < f->GetLength()-1){
             //get the page
             f->GetPage(p,pnum);
-            
+            pnum = pnum + 1;
             //store return value of new page in newret
             int newret = p->GetFirst(&fetchme);
             if(newret!=0){
