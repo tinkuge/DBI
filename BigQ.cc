@@ -81,12 +81,13 @@ void* BigQ::sortRec(void* b){
                     sPage->Append(i);
                 }
             }
+            //once you write out the run to the file, add the existing record to a new page
             numrun = numrun+1;
+            strRec.clear();
+            uPage = new Page();
+            uPage->Append(r);
+            strRec.push_back(copy);
         }
-            //After writing the existing sorted pages (run) to file , empty the pages and write current record to the empty page
-        strRec.clear();
-        uPage->EmptyItOut();
-        sPage->EmptyItOut();
     }
 
     //sort and write last run
