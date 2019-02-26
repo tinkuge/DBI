@@ -67,11 +67,12 @@ void* BigQ::sortRec(void* b){
             for(auto i: strRec){
                 //if the page has room, append it and do nothing
                 if(sPage->Append(i)){
-
+                    cout<<"Pushing sorted record into the page"<<endl;
                 }
 
                 //Otherwise write the page to the file
                 else{
+                    cout<<"Pushing sorted page into the file"<<endl;
                     f->AddPage(sPage,pnum-1);
                     sPage->EmptyItOut();
                     sPage = new Page();
